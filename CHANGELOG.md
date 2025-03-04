@@ -6,15 +6,121 @@
 
 ### Improvements and bug fixes
 
+- fix(nix): wait for mosquitto to start before starting teslamate (#4419 - @brianmay)
+- feat: use Grafana 11.4.0 (#4299 - @swiffer)
+- feat: improve logging messages (#4467 - @micves and @brianmay)
+- feat: optimize state transitions (#4473 - @micves and @brianmay)
+  - don't try to sleep if power > 0
+  - cancel an ongoing suspended state/trying to sleep and go back to online
+  - add conditions to enter charging
+- feat: support accessing PostgreSQL on unix domain sockets (#4456 - @j-baker)
+- fix(nix): temporarily disable browser locale in date formats for nix deployment as well (#4480 - @swiffer)
+- feat: Grafana 11.5.0 (#4509 - @swiffer)
+- feat: Grafana 11.5.2 (#4551 - @swiffer)
+
+#### Build, CI, internal
+
+- build(deps): bump castore from 1.0.9 to 1.0.10 (#4414)
+- build(deps): bump @docusaurus/preset-classic from 3.5.2 to 3.6.3 in /website (#4412)
+- build(deps): bump path-to-regexp from 1.8.0 to 1.9.0 in /website (#4424)
+- build(deps): bump crate-ci/typos from 1.27.0 to 1.28.1 (#4411)
+- build(deps): bump tesla from 1.13.0 to 1.13.2 (#4416)
+- build(deps): bump postgrex from 0.19.1 to 0.19.3 (#4415)
+- build(nix): switch to nixos-24.11 (#4420 - @brianmay)
+- build(deps): update flake.lock (#4427)
+- fix: update mix deps hash to fix build error on recent NixOS 24.11 update (#4428)
+- build(deps): bump path-to-regexp and express in /website (#4433)
+- build(deps): update flake.lock (#4440)
+- build(deps): bump actions/cache from 4.1.2 to 4.2.0 (#4465)
+- build(deps): bump phoenix from 1.7.14 to 1.7.18 (#4462)
+- build(deps-dev): bump dialyxir from 1.4.4 to 1.4.5 (#4460)
+- build(deps): bump ex_cldr from 2.40.1 to 2.40.2 (#4461)
+- build(deps): bump crate-ci/typos from 1.28.1 to 1.29.0 (#4464)
+- ci: update actions/cache to v4.2.0 ([79107d5](https://github.com/teslamate-org/teslamate/commit/79107d53b7712934587bbe40c503e63d5dd9f122) - @JakobLichterfeld)
+- build(deps): bump DeterminateSystems/magic-nix-cache-action from 8 to 9 (#4515)
+- build(deps): bump actions/stale from 9.0.0 to 9.1.0 (#4516)
+- build(deps): bump crate-ci/typos from 1.29.0 to 1.29.5 (#4514)
+- build(deps-dev): bump excoveralls from 0.18.3 to 0.18.5 (#4524)
+- build(deps-dev): bump credo from 1.7.8 to 1.7.11 (#4523)
+- build(deps): bump @docusaurus/preset-classic from 3.6.3 to 3.7.0 in /website (#4518)
+- build(deps): bump serialize-javascript from 6.0.1 to 6.0.2 in /website (#4548)
+- build(deps): update flake.lock (#4455)
+- style(markdownlint): allow 'details', 'summary', and 'TabItem' elements ([d5b1a55](https://github.com/teslamate-org/teslamate/commit/d5b1a55007eefedd5d852ecd50d67b8c4d36faa5) - @JakobLichterfeld)
+- style(environment_variables): remove multiple whitespaces ([603ff82](https://github.com/teslamate-org/teslamate/commit/603ff824b052b4465fcce9fe77e5e40ad586c07a) - @JakobLichterfeld)
+- style(docs): fix line length fenced-code-style, no bare url links, multiple whitespaces, alt text, header style ([1972584](https://github.com/teslamate-org/teslamate/commit/1972584d8f9d11c2f640de046a8e9fd47b43c4fb) - @JakobLichterfeld)
+- build(deps): bump actions/cache from 4.2.0 to 4.2.2 (#4564)
+- build(deps): bump crate-ci/typos from 1.29.5 to 1.30.0 (#4563)
+- build(deps): bump castore from 1.0.11 to 1.0.12 (#4565)
+- build(deps): bump plug_cowboy from 2.7.2 to 2.7.3 (#4566)
+
+#### Dashboards
+
+- fix: for battery health dashboard erroring out if no charge data has been collected so far (#4448 - @swiffer)
+- fix: url for releases in home dashboard (#4452 -@FLX3009)
+- feat: add 0 as lower bound for gauge to ensure proper scaling (#4498 - @swiffer)
+- eat(dashboards): improve elevation scale in drive stats (#4546 - @swiffer)
+
+#### Translations
+
+- feat: Translate remaining Spanish sentences (#4529 - @jheredianet)
+
+#### Documentation
+
+- doc: bump elixir based on availability (#4431 - @swiffer)
+- doc: align node req with what is used in CI (#4430 - @swiffer)
+- doc: added missing topic "charging_state" in mqtt doc (#4466 - @Beme99)
+- docs: Grafana 11.4 for manual install on FreeBSD (#4474 - @swiffer)
+- doc: Fixing typo for sensor psi calculation (#4470 - @Phazz)
+- doc: Simplify Home Assistant sensors, add device_class to allow changing measurement units (#4472 - @longzheng)
+- docs: add reindexing instructions for database maintenance to improve performance in case of index bloat due to frequent updates or deletions (#4558 and #4574 - @jheredianet)
+
+## [1.32.0] - 2024-11-23
+
+As always, there are many improvements. The focus has been on quality of life improvements and standardization across all dashboards. Enjoy it.
+
+### New features
+
+### Improvements and bug fixes
+
+- feat: use Grafana 11.2.3 (#4338 - @swiffer)
+- feat: Update marketing name to recognize Model S LR+ (#4370 - @cwanja)
+- fix(nix): bump hash for dependencies (#4371 - @brianmay)
+
 #### Build, CI, internal
 
 - ci: remove unknown flag --ref for gh cache delete in cleanup_caches workflow ([3a515df](https://github.com/teslamate-org/teslamate/commit/3a515df5aa400139acf8ef638e5ae37339c553cf) - @JakobLichterfeld)
+- build(deps): bump actions/checkout from 4.2.1 to 4.2.2 (#4340)
+- build(deps): bump actions/cache from 4.0.2 to 4.1.2 (#4341)
+- build(deps): bump cachix/install-nix-action from 27 to 30 (#4342)
+- build(deps): bump tesla from 1.12.1 to 1.13.0 (#4335)
+- build(deps): bump floki from 0.36.2 to 0.36.3 (#4336)
+- feat: add CONTRIBUTING file to exclusion lists for treefmt (#4359 - @JakobLichterfeld)
+- ci: create PR to update flake.lock every saturday (#4372 - @brianmay)
+- ci(fix): correct permissions for flake.lock updates ([c673ef3](https://github.com/teslamate-org/teslamate/commit/c673ef363ba73ad076680d71ef54bd549582d41f)- @JakobLichterfeld)
+- ci: update flake.lock workflow with appropriate labels for created pr's ([54c41c1](https://github.com/teslamate-org/teslamate/commit/54c41c1fe66664b62d817502d1b2bdb244b70dc2) - @JakobLichterfeld)
+- build(deps): bump cross-spawn from 7.0.3 to 7.0.6 in /website (#4391)
+- build(deps): bump crate-ci/typos from 1.26.0 to 1.27.0 (#4344)
+- build(deps): update flake.lock (#4381)
 
 #### Dashboards
+
+- fix: allow editing of dashboards - [changes will be overwritten on update](https://grafana.com/docs/grafana/latest/administration/provisioning/#making-changes-to-a-provisioned-dashboard) (#4338 - @swiffer)
+- fix: ensure max speed panels are converted according to length unit setting in drive stats dashboard (#4338 - @swiffer)
+- perf: speed up queries used to calculate max speed in drive stats dashboard (#4338 - @swiffer)
+- feat: add a welcome dashboard (#4338 - @swiffer)
+- fix: Charges Dashboard -> Range added renamed to Ø Charge rate (#4349 - @swiffer)
+- fix: Axis Labels for XY Chart in Battery Health and reduces Query count in Visited (#4364 - @swiffer)
+- feat: Dashboard refinements and standardization (#4367 - @swiffer)
+- feat: add Detailed Energy Use to drive-details (#4386 - @jameskitt616)
 
 #### Translations
 
 #### Documentation
+
+docs: add contributing guidelines link for GitHub (#4345 - @JakobLichterfeld)
+docs: update Home Assistant integration documentation with configuration URL and model name hints (#4359 - @JakobLichterfeld)
+docs: Remove availability from Home Assistant MQTT sensors, as it can be misleading and prevent sensors from receiving updated values (#4362 - @longzheng)
+docs: Introducing TeslaMate Guru on Gurubase.io (#4390 - @kursataktas)
 
 ## [1.31.1] - 2024-10-29
 
@@ -2212,7 +2318,8 @@ New users need to sign in via the web interface.
 
 ## [1.0.0] - 2019-07-25
 
-[unreleased]: https://github.com/teslamate-org/teslamate/compare/v1.31.1...HEAD
+[unreleased]: https://github.com/teslamate-org/teslamate/compare/v1.32.0...HEAD
+[1.32.0]: https://github.com/teslamate-org/teslamate/compare/v1.31.1...v1.32.0
 [1.31.1]: https://github.com/teslamate-org/teslamate/compare/v1.31.0...v1.31.1
 [1.31.0]: https://github.com/teslamate-org/teslamate/compare/v1.30.1...v1.31.0
 [1.30.1]: https://github.com/teslamate-org/teslamate/compare/v1.30.0...v1.30.1

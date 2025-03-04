@@ -173,6 +173,7 @@ in
         after = [
           "network.target"
           "postgresql.service"
+          "mosquitto.service"
         ];
         wantedBy = mkIf cfg.autoStart [ "multi-user.target" ];
         serviceConfig = {
@@ -245,14 +246,19 @@ in
           };
           security = {
             allow_embedding = true;
-            disable_gravatr = true;
+            disable_gravatar = true;
           };
           users = {
             allow_sign_up = false;
+            default_language = "detect";
           };
           "auth.anonymous".enabled = false;
           "auth.basic".enabled = false;
           analytics.reporting_enabled = false;
+          dashboards.default_home_dashboard_path = "../grafana/dashboards/internal/home.json";
+          # This experimental config option is temporarily disabled (incompatible with Scenes powered Dashboards introduced in Grafana 11.3.0)
+          # https://github.com/grafana/grafana/issues/95209
+          # date_formats.use_browser_locale = true;
         };
         provision = {
           enable = true;
@@ -269,7 +275,7 @@ in
                 folderUid = "Nr4ofiDZk";
                 type = "file";
                 disableDeletion = false;
-                editable = true;
+                allowUiUpdates = true;
                 updateIntervalSeconds = 86400;
                 options.path = lib.sources.sourceFilesBySuffices
                   ../grafana/dashboards
@@ -282,7 +288,7 @@ in
                 folderUid = "Nr5ofiDZk";
                 type = "file";
                 disableDeletion = false;
-                editable = true;
+                allowUiUpdates = true;
                 updateIntervalSeconds = 86400;
                 options.path = lib.sources.sourceFilesBySuffices
                   ../grafana/dashboards/internal
@@ -295,7 +301,7 @@ in
                 folderUid = "Nr6ofiDZk";
                 type = "file";
                 disableDeletion = false;
-                editable = true;
+                allowUiUpdates = true;
                 updateIntervalSeconds = 86400;
                 options.path = lib.sources.sourceFilesBySuffices
                   ../grafana/dashboards/reports
