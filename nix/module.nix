@@ -82,8 +82,7 @@ in
         '';
       };
 
-      package = mkPackageOption pkgs "postgresql_16" {
-        # 17 is not yet available in nixpkgs
+      package = mkPackageOption pkgs "postgresql_17" {
         extraDescription = ''
           The postgresql package to use.
         '';
@@ -256,9 +255,10 @@ in
           "auth.basic".enabled = false;
           analytics.reporting_enabled = false;
           dashboards.default_home_dashboard_path = "../grafana/dashboards/internal/home.json";
-          # This experimental config option is temporarily disabled (incompatible with Scenes powered Dashboards introduced in Grafana 11.3.0)
-          # https://github.com/grafana/grafana/issues/95209
+          # This experimental config option is disabled until Grafana 11.6.1 becomes available in NixOS 25.05
           # date_formats.use_browser_locale = true;
+          plugins.preinstall_disabled = true;
+          unified_alerting.enabled = false;
         };
         provision = {
           enable = true;
@@ -277,9 +277,9 @@ in
                 disableDeletion = false;
                 allowUiUpdates = true;
                 updateIntervalSeconds = 86400;
-                options.path = lib.sources.sourceFilesBySuffices
+                options.path = lib.sources.sourceByRegex
                   ../grafana/dashboards
-                  [ ".json" ];
+                  [ "^[^\/]*\.json$" ];
               }
               {
                 name = "teslamate_internal";
